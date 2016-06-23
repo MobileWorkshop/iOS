@@ -33,3 +33,5 @@ xcuserdata
 *.zip
 *.ipa
 
+#Node
+node_modules
