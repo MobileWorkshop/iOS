@@ -1,0 +1,51 @@
+fastlane_version "1.89.0"
+
+##############################################################################
+# BUILD VARIABLES
+##############################################################################
+
+ARTIFACTS      = File.expand_path('artifacts')
+REPORTS_DIR    = ARTIFACTS + "/tests"
+IPAS_DIR       = ARTIFACTS + "/ipas"
+DEFAULT_SCHEME = 'HelloRest'
+
+##############################################################################
+# PRE TASKS
+##############################################################################
+
+before_all do
+  # Create build outpout directories if they do not exist
+  Dir.mkdir(ARTIFACTS) unless File.exists?(ARTIFACTS)
+end
+
+##############################################################################
+# TASKS
+##############################################################################
+
+desc "Runs all the tests and generates reports"
+lane :test do
+  scan(
+    scheme: DEFAULT_SCHEME,
+    output_directory: REPORTS_DIR,
+    clean: true
+  )
+end
+
+desc "Deploy a new version to the App Store"
+lane :appstore do
+  # match(type: "appstore")
+  # snapshot
+  # gym # Build your app - more options available
+  # deliver(force: true)
+  # frameit
+end
+
+##############################################################################
+# POST TASKS
+##############################################################################
+
+after_all do |lane|
+end
+
+error do |lane, exception|
+end
