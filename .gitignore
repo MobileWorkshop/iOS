@@ -13,7 +13,7 @@ build/
 target/
 
 # Cocoapods
-#Pods/
+Pods/
 
 # XCode Private Settings
 *.pbxuser
@@ -32,6 +32,11 @@ xcuserdata
 #Archives
 *.zip
 *.ipa
+artifacts
+
+#Gems
+.bundle
+vendor/
 
 #Node
 node_modules
