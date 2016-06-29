@@ -1,0 +1,42 @@
+# OSX Temporary Files
+.DS_Store
+.Trashes
+*.swp
+profile
+
+# XCode Temporary Files
+*~.nib
+
+# XCode Build Files
+DerivedData/
+build/
+target/
+
+# Cocoapods
+Pods/
+
+# XCode Private Settings
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+# Whitelist the default ones, some projects need to use these
+!default.pbxuser
+!default.mode1v3
+!default.mode2v3
+!default.perspectivev3
+xcuserdata
+!xcshareddata
+*.xccheckout
+
+#Archives
+*.zip
+*.ipa
+artifacts
+
+#Gems
+.bundle
+vendor/
+
+#Node
+node_modules

@@ -1,0 +1,51 @@
+#!/bin/bash
+
+cd "$(dirname "$0")/.."
+
+# MAKE SURE TO SET THIS THING
+export GEM_BIN=$HOME/.gem/ruby/2.3.0/bin
+
+export LC_CTYPE=en_US.UTF-8
+
+if [[ ":$PATH:" == *":$GEM_BIN:"* ]]; then
+  echo "==> PATH already contains user GEM BIN folder"
+else
+  echo "==> Adding user GEM BIN folder to PATH"
+  export PATH=$GEM_BIN:$PATH
+fi
+
+
+##############################################################################
+# PROXY SETTINGS
+##############################################################################
+
+proxy_gateway_url="someproxy:someport"
+set_proxy_settings(){
+  export HTTP_PROXY=$proxy_gateway_url
+  export HTTPS_PROXY=$proxy_gateway_url
+}
+
+##############################################################################
+# BOOTSTRAP
+##############################################################################
+
+echo "==> Running at `pwd`"
+
+echo "==> Checking to see if you're behind a proxy, hang tight!"
+curl_result=`curl $proxy_gateway_url > /dev/null 2>&1`
+curl_return_code=$?
+if [ $curl_return_code == 0 ]
+  then
+    echo "==> Looks like you're behind a proxy. Adding proxy settings..."
+    set_proxy_settings
+fi
+
+echo "==> Installing gem dependencies…"
+gem install --user-install bundler
+bundle config --local path vendor/gems
+bundle check > /dev/null 2>&1 || bundle install
+
+echo "==> Installing pod dependencies…"
+bundle exec pod install
+
+echo "==> App is now ready to go!"
