@@ -14,8 +14,8 @@ target 'HelloRest' do
 end
 
 target 'HelloRestSpecs' do
-  pod 'Quick'
-  pod 'Nimble'
+  pod 'Quick', '>= 0.10'
+  pod 'Nimble', '>= 5.0'
   pod 'OHHTTPStubs'
   pod 'OHHTTPStubs/Swift'
 end

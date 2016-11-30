@@ -28,11 +28,11 @@ class FakeViewController: ViewController {
 class ViewControllerSpec: QuickSpec {
     override func spec() {
         beforeEach { 
-            stub(isHost("localhost") && isPath("/listall") && isMethodGET()) { request in
+            stub(condition: isHost("localhost") && isPath("/listall") && isMethodGET()) { request in
                 
                 let obj = [["key1":"value1"], ["key2":["value2A","value2B"]]]
                 
-                return OHHTTPStubsResponse(JSONObject: obj, statusCode: 200, headers: nil).responseTime(OHHTTPStubsDownloadSpeed3G)
+                return OHHTTPStubsResponse(jsonObject: obj, statusCode: 200, headers: nil).responseTime(OHHTTPStubsDownloadSpeed3G)
                 
             }
         }
@@ -46,7 +46,7 @@ class ViewControllerSpec: QuickSpec {
                 
                 let storyBoard = UIStoryboard(name: "Main", bundle: nil)
                 
-                let vc = storyBoard.instantiateViewControllerWithIdentifier("ViewController") as! ViewController
+                let vc = storyBoard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
                 
                 vc.getData();
                 
